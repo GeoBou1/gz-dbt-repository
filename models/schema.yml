@@ -51,9 +51,9 @@ sources:
 
 
 models:
-  - name: stg_raw_product
-  - name: stg_raw_sales
-  - name: stg_raw_ship
+  - name: product
+  - name: sales
+  - name: ship
   - name: int_sales_margin
     tests:
       - unique:
