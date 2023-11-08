@@ -183,3 +183,10 @@ models:
           - name: ads_cost
           - name: ads_impressions
           - name: ads_clicks
+  - name: finance_campaigns_day
+    description: finance and ads calculation per day
+    columns:
+      - name: date_date
+        tests:
+          - unique
+              
