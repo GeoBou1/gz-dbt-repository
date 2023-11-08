@@ -55,13 +55,6 @@ models:
   - name: stg_raw_sales
   - name: stg_raw_ship
   - name: int_sales_margin
-    description: margin calcultation per order line / product sale
-    columns:
-      - name: margin
-        description: Margin = Revenue - Purchase_cost
-      - name: purchase_cost
-        description: Purchase_cost = Quantity * Purchase_price 
-  - name: int_sales_margin
     tests:
       - unique:
           column_name: "(orders_id || '-' || products_id)"
@@ -74,6 +67,12 @@ models:
             - date_date
             - revenue
             - quantity
+    description: margin calcultation per order line / product sale
+    columns:
+      - name: margin
+        description: Margin = Revenue - Purchase_cost
+      - name: purchase_cost
+        description: Purchase_cost = Quantity * Purchase_price 
   - name: int_orders_margin
     description: margin calcultation per order 
     columns:
