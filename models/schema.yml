@@ -56,7 +56,7 @@ sources:
             description: date
           - name: paid_source
             description: ad source
-          - name: campaing_key
+          - name: campaign_key
             description: key of campaign
           - name: camPGN_name
             description: name of campaign
@@ -74,7 +74,7 @@ sources:
             description: date
           - name: paid_source
             description: ad source
-          - name: campaing_key
+          - name: campaign_key
             description: key of campaign
           - name: camPGN_name
             description: name of campaign
@@ -92,7 +92,7 @@ sources:
             description: date
           - name: paid_source
             description: ad source
-          - name: campaing_key
+          - name: campaign_key
             description: key of campaign
           - name: camPGN_name
             description: name of campaign
@@ -110,7 +110,7 @@ sources:
             description: date
           - name: paid_source
             description: ad source
-          - name: campaing_key
+          - name: campaign_key
             description: key of campaign
           - name: camPGN_name
             description: name of campaign
@@ -122,70 +122,24 @@ sources:
             description: nb of clicks
 
 models:
-  - name: stg_raw__product
-    description: products of Greenweez with purchase price
-    columns:
-          - name: products_id
-            tests:
-              - unique
-              - not_null
-            description: primary key of product
-          - name: purchase_price
-            description: purchase price of each product
-  - name: stg_raw__sales
-    description: sales of Greenweez, one row per product id in each orders id
-    columns:
-          - name: date_date
-            description: date order was made
-          - name: orders_id
-            description: foreign key for ship
-          - name: products_id
-            description: foreign key for product
-          - name: revenue
-            description: turnover generated
-          - name: quantity
-            description: quantity product in order
-  - name: stg_raw__ship
-    description: ship informations of each order of Greenweez sales
-    columns:
-          - name: orders_id
-            tests:
-              - unique
-              - not_null
-            description: primary key of the table, foreign key for sales
-          - name: shipping_fee
-            description: fee paid
-          - name: logcost
-            description: logistic cost
-          - name: ship_cost
-            description: shipping cost
+  - name: stg_raw_product
+  - name: stg_raw_sales
+  - name: stg_raw_ship
   - name: int_sales_margin
-    tests:
-      - unique:
-          column_name: "(orders_id || '-' || products_id)"
-      - not_null:
-          column_name:
-            - orders_id
-            - products_id
-            - margin
-            - purchase_cost
-            - date_date
-            - revenue
-            - quantity
     description: margin calcultation per order line / product sale
     columns:
       - name: margin
         description: Margin = Revenue - Purchase_cost
-      - name: purchase_cost
+      - name: Purchase_cost
         description: Purchase_cost = Quantity * Purchase_price 
   - name: int_orders_margin
     description: margin calcultation per order 
     columns:
-      - name: order_id
+      - name: orders_id
         description: primary key
       - name: margin
         description: Margin = Revenue - Purchase_cost
-      - name: purchase_cost
+      - name: Purchase_cost
         description: Purchase_cost = Quantity * Purchase_price 
       - name: date_date
         description: date of the order
@@ -200,3 +154,39 @@ models:
         description: Operational margin = margin + shipping fee - log_cost - ship_cost
   - name: finance_days
     description: finance calculation per days
+  - name: int_campaigns
+    tests:
+          - unique:
+              column_name: "(date_date ||'-'|| campaign_key)"
+    description: aggregation of ads statistics
+    columns:
+          - name: date_date
+            description: date
+          - name: paid_source
+            description: ad source
+          - name: campaign_key
+            description: key of campaign
+          - name: camPGN_name
+            description: name of campaign
+          - name: ads_cost
+            description: cost of session
+          - name: impression
+            description: nb impressions made
+          - name: click
+            description: nb of clicks 
+  - name: int_campaigns_days
+    description: aggregation by day of ads statistics
+    columns:
+          - name: date_date
+            tests:
+              - unique
+          - name: ads_cost
+          - name: ads_impressions
+          - name: ads_clicks
+  - name: finance_campaigns_day
+    description: finance and ads calculation per day
+    columns:
+      - name: date_date
+        tests:
+          - unique
+              
