@@ -56,7 +56,7 @@ sources:
             description: date
           - name: paid_source
             description: ad source
-          - name: campaing_key
+          - name: campaign_key
             description: key of campaign
           - name: camPGN_name
             description: name of campaign
@@ -74,7 +74,7 @@ sources:
             description: date
           - name: paid_source
             description: ad source
-          - name: campaing_key
+          - name: campaign_key
             description: key of campaign
           - name: camPGN_name
             description: name of campaign
@@ -92,7 +92,7 @@ sources:
             description: date
           - name: paid_source
             description: ad source
-          - name: campaing_key
+          - name: campaign_key
             description: key of campaign
           - name: camPGN_name
             description: name of campaign
@@ -110,7 +110,7 @@ sources:
             description: date
           - name: paid_source
             description: ad source
-          - name: campaing_key
+          - name: campaign_key
             description: key of campaign
           - name: camPGN_name
             description: name of campaign
@@ -154,3 +154,32 @@ models:
         description: Operational margin = margin + shipping fee - log_cost - ship_cost
   - name: finance_days
     description: finance calculation per days
+  - name: int_campaigns
+    tests:
+          - unique:
+              column_name: "(date_date ||'-'|| campaign_key)"
+    description: aggregation of ads statistics
+    columns:
+          - name: date_date
+            description: date
+          - name: paid_source
+            description: ad source
+          - name: campaign_key
+            description: key of campaign
+          - name: camPGN_name
+            description: name of campaign
+          - name: ads_cost
+            description: cost of session
+          - name: impression
+            description: nb impressions made
+          - name: click
+            description: nb of clicks 
+  - name: int_campaigns_days
+    description: aggregation by day of ads statistics
+    columns:
+          - name: date_date
+            tests:
+              - unique
+          - name: ads_cost
+          - name: ads_impressions
+          - name: ads_clicks
