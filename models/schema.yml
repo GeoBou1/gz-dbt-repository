@@ -48,7 +48,78 @@ sources:
             description: logistic cost of the order
           - name: ship_cost
             description: shipping cost of the order
-
+      - name: adwords
+        identifier: raw_gz_adwords
+        description: adwords campaigns statistics
+        columns:
+          - name: date_date
+            description: date
+          - name: paid_source
+            description: ad source
+          - name: campaing_key
+            description: key of campaign
+          - name: camPGN_name
+            description: name of campaign
+          - name: ads_cost
+            description: cost of session
+          - name: impression
+            description: nb impressions made
+          - name: click
+            description: nb of clicks
+      - name: bing
+        identifier: raw_gz_bing
+        description: bing campaigns statistics
+        columns:
+          - name: date_date
+            description: date
+          - name: paid_source
+            description: ad source
+          - name: campaing_key
+            description: key of campaign
+          - name: camPGN_name
+            description: name of campaign
+          - name: ads_cost
+            description: cost of session
+          - name: impression
+            description: nb impressions made
+          - name: click
+            description: nb of clicks
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: criteo campaigns statistics
+        columns:
+          - name: date_date
+            description: date
+          - name: paid_source
+            description: ad source
+          - name: campaing_key
+            description: key of campaign
+          - name: camPGN_name
+            description: name of campaign
+          - name: ads_cost
+            description: cost of session
+          - name: impression
+            description: nb impressions made
+          - name: click
+            description: nb of clicks
+      - name: facebook
+        identifier: raw_gz_facebook
+        description: facebook campaigns statistics
+        columns:
+          - name: date_date
+            description: date
+          - name: paid_source
+            description: ad source
+          - name: campaing_key
+            description: key of campaign
+          - name: camPGN_name
+            description: name of campaign
+          - name: ads_cost
+            description: cost of session
+          - name: impression
+            description: nb impressions made
+          - name: click
+            description: nb of clicks
 
 models:
   - name: stg_raw__product
