@@ -19,3 +19,5 @@ models:
   gz_dbt:
     mart:
       +materialized: table
+      finance:
+        schema: finance
